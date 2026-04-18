@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+    productEditForm.html - 상품 수정 폼
+    productForm.html(등록)과 거의 동일하지만 다음이 다릅니다:
+      1. 제목: "상품 수정"
+      2. form action: /products/{id}/edit
+      3. 뒤로가기: 상품 상세 페이지
+      4. 버튼: "수정 완료"
+-->
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    /*우선 스타일만 복붙*/
+    <title th:text="|'${productForm.name}' 수정 - Product Management|">카테고리 목록</title>
+    <style>
+        body { font-family: 'Malgun Gothic', Arial, sans-serif; max-width: 700px; margin: 40px auto; padding: 0 20px; color: #333; }
+        h1 { border-bottom: 2px solid #e67e22; padding-bottom: 10px; color: #2c3e50; }
+        .back-btn { display: inline-block; padding: 8px 16px; background: #6c757d; color: white; text-decoration: none; border-radius: 4px; margin-bottom: 24px; }
+        .back-btn:hover { background: #545b62; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: bold; margin-bottom: 6px; color: #495057; }
+        input[type="text"], input[type="number"], textarea, select {
+            width: 100%; padding: 10px 12px; border: 1px solid #ced4da;
+            border-radius: 4px; font-size: 1em; box-sizing: border-box;
+            font-family: inherit;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none; border-color: #e67e22; box-shadow: 0 0 0 3px rgba(230,126,34,0.15);
+        }
+        /* 검증 오류 스타일 */
+        .field-error { border-color: #e74c3c !important; }
+        .error-msg { color: #e74c3c; font-size: 0.85em; margin-top: 5px; display: block; }
+        textarea { height: 120px; resize: vertical; }
+        .btn-submit { background: #e67e22; color: white; border: none; padding: 12px 32px; font-size: 1em; border-radius: 4px; cursor: pointer; }
+        .btn-submit:hover { background: #ca6f1e; }
+        .hint { font-size: 0.85em; color: #6c757d; margin-top: 4px; }
+        .required { color: #e74c3c; }
+        .editing-badge { display: inline-block; background: #e67e22; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.8em; margin-left: 8px; vertical-align: middle; }
+    </style>
+</head>
+</html>

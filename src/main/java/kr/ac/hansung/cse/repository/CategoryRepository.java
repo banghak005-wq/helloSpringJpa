@@ -3,6 +3,7 @@ package kr.ac.hansung.cse.repository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import kr.ac.hansung.cse.model.Category;
+
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -29,13 +30,14 @@ public class CategoryRepository {
     }
 
     // 이름으로 카테고리 조회 (폼에서 선택한 카테고리명 → Category 엔티티 변환 시 사용)
-    public Optional<Category> findByName(String name) {
+    public Optional<Category> findByName(String name) { //과제 요구사항이었는데 보니까 이미 작성이 돼있습니다.
         List<Category> result = em.createQuery(
                         "SELECT c FROM Category c WHERE c.name = :name", Category.class)
                 .setParameter("name", name)
                 .getResultList();
         return result.isEmpty() ? Optional.empty() : Optional.of(result.get(0));
     }
+
 
     // JOIN FETCH: N+1 문제 방지 (Category + Products 한 번에 로드)
     public Optional<Category> findByIdWithProducts(Long id) {
@@ -46,5 +48,17 @@ public class CategoryRepository {
                 .getResultList();
         return result.isEmpty() ? Optional.empty() : Optional.of(result.get(0));
     }
+
+    // 삭제 전 연결 상품 수 확인 (COUNT 쿼리)
+    public long countProductsByCategoryId(Long categoryId) {
+        return em.createQuery(
+            "SELECT COUNT(p) FROM Product p WHERE p.category.id = :id",
+            Long.class)
+            .setParameter("id", categoryId).getSingleResult();
+    }
+ 
+    public void delete(Long id) {
+        Category c = em.find(Category.class, id); if (c != null) em.remove(c); }
+
 }
 
