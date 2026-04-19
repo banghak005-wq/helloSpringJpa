@@ -135,4 +135,11 @@
     </form>
 
 </body>
+    <footer>
+        <p>
+            실습 수행 일시: 
+            <span th:text="${#temporals.format(#temporals.createNow(), 'yyyy년 MM월 dd일 (E) a hh:mm:ss', new java.util.Locale('ko', 'KR'))}"></span>
+            | 학번: 2191045 | 성명: 백인서
+        </p>
+    </footer>
 </html>
